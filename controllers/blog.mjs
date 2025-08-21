@@ -64,3 +64,13 @@ export const borrarblog = async (req, res) => {
     res.status(200).json({ message: "Se ha borrado el blog" })
 
 }
+export const actualizarblog = async (req, res) => {
+    const { autor, contenido, titulo } = req.body;
+    const { id } = req.params
+    const resultado = await Blog.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { autor, contenido, titulo } },
+    );
+    res.status(200).json({ message: "Se ha actualizado el blog" })
+
+}
